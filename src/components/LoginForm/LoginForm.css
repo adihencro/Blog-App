@@ -76,3 +76,13 @@
 .register-link p a:hover {
     text-decoration: underline;
 }
+
+.error {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .success {
+    color: green;
+    background-color: lightgreen;
+  }
