@@ -56,8 +56,8 @@ const RegisterForm = () => {
                 setSuccess("Registered successfully");
                 setTimeout(() => {
                     setSuccess('');
-                  }, 1800);
-                  console.log(response.json())
+                    }, 1800);
+                    console.log(response.json())
             }
         } catch (error) {
             setError(error.message);
