@@ -10,7 +10,6 @@ import { useState, useEffect } from 'react';
 import { BLOG_API_URL } from '../../api';
 
 const RegisterForm = () => {
-
     const [formData, setFormData] = useState({
         username: '',
         password: '',

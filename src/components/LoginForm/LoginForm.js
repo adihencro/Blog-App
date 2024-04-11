@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './LoginForm.css';
 import { FaUser, FaLock } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { BLOG_API_URL } from '../../api';
+import { AuthContext } from '../../AuthContext';
 
 const LoginForm = () => {
-
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
 
+  const { login } = useContext(AuthContext); //save token in context
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -34,11 +35,12 @@ const LoginForm = () => {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.log(errorData);
-        if (errorData && errorData.non_field_errors) {
-            throw new Error(`${errorData.non_field_errors}`);
+      const data = await response.json();
+
+      if (!response.ok) {      
+        console.log(data);
+        if (data && data.non_field_errors) {
+            throw new Error(`${data.non_field_errors}`);
         } else {
             throw new Error(`API request failed with status ${response.status}`);
         }
@@ -48,7 +50,9 @@ const LoginForm = () => {
         setTimeout(() => {
             setSuccess('');
             }, 1800);
-            console.log(response.json())
+            console.log(data);
+            const token = data.token;
+            login(token);
       }
     } catch (error) {
       setError(error.message);
