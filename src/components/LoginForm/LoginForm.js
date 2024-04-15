@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import './LoginForm.css';
 import { FaUser, FaLock } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { BLOG_API_URL } from '../../api';
-import { AuthContext } from '../../AuthContext';
+import { AuthContext } from '../Auth/AuthContext';
+import { Navigate } from 'react-router';
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +13,7 @@ const LoginForm = () => {
     password: '',
   });
 
-  const { login } = useContext(AuthContext); //save token in context
+  const { token, isLoggedIn, login } = useContext(AuthContext); 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -38,7 +39,6 @@ const LoginForm = () => {
       const data = await response.json();
 
       if (!response.ok) {      
-        console.log(data);
         if (data && data.non_field_errors) {
             throw new Error(`${data.non_field_errors}`);
         } else {
@@ -51,8 +51,8 @@ const LoginForm = () => {
             setSuccess('');
             }, 1800);
             console.log(data);
-            const token = data.token;
-            login(token);
+            console.log(token);
+            login(data.token);
       }
     } catch (error) {
       setError(error.message);
@@ -81,6 +81,7 @@ const LoginForm = () => {
         </div>
         {error && <p className="error">{error}</p>}
         {success && <p className="success">{success}</p>}
+        {isLoggedIn && <Navigate to="/home" />}
       </form>
     </div>
   );

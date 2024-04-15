@@ -3,25 +3,32 @@ import { BLOG_API_URL } from '../../../api';
 import './Post.css';
 import { GoHeart } from "react-icons/go";
 import { BiCommentDetail } from "react-icons/bi";
-import { AuthContext } from '../../../AuthContext';
+import { AuthContext } from '../../Auth/AuthContext';
 
 const Post = ({ post }) => {
   const [details, setDetails] = useState([]);
   const [clickedLike, setClickedLike] = useState(false);
   const [clickedComment, setClickedComment] = useState(false);
-  const { token } = useContext(AuthContext);
+  const {token} = useContext(AuthContext);
 
-  console.log(token);
 
   useEffect(() => {
-    fetch(`${BLOG_API_URL}/posts/advanced_view/${post.id}}`)
-      .then(response => response.json())
-      .then(data => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch(`${BLOG_API_URL}/posts/advanced_view/${post.id}}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch post');
+        }
+        const data = await response.json();
         console.log('Fetched post details:', data);
         setDetails(data);
-      })
-      .catch(error => console.error('Error fetching post details:', error));
+      } catch (error) {
+        console.error('Fetch posts error:', error);
+      }
+    };
+    fetchPosts();
   }, []);
+
 
   const handleClickLike = () => {
     setClickedLike(!clickedLike);
@@ -39,7 +46,7 @@ const Post = ({ post }) => {
 
 
   return (
-    <div className="wrapper" postid>
+    <div className="wrapper">
       <p className='creator'>@{details?.post?.creator_username}</p>
       {details?.post?.image && details.post.image.length > 0 ? (
         <>

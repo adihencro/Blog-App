@@ -98,7 +98,7 @@ const RegisterForm = () => {
                     Register
                 </button>
                 <div className='register-link'>
-                    <p>Already have an account? <Link to='/'>Login</Link></p>
+                    <p>Already have an account? <Link to='/login'>Login</Link></p>
                 </div>
                 {error && <p className="error">{error}</p>}
                 {success && <p className="success">{success}</p>}

@@ -1,28 +1,28 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginForm from './components/LoginForm/LoginForm';
 import RegisterForm from './components/RegisterForm/RegisterForm';
 import PostList from './components/HomePage/Posts/PostList';
-import { AuthProvider } from './AuthContext';
+import { AuthProvider } from './components/Auth/AuthContext';
+import { PrivateRoute } from './components/Auth/PrivateRoute';
+
 
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <AuthProvider>
+      <AuthProvider>
+        <Router>
           <Routes>
-            <Route path="" element={<LoginForm />} />
-          </Routes>
-          <Routes>
+            <Route path='/' element={<LoginForm />} />
+            <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
+            <Route path="/home" element={<PrivateRoute />}>
+              <Route path="/home" element={<PostList />}/>  
+            </Route>
           </Routes>
-          <Routes>
-            <Route path="/Home" element={<PostList />} />
-          </Routes>
-        </AuthProvider>
-      </Router>
-
+        </Router>
+      </AuthProvider>
     </div>
   );
 }

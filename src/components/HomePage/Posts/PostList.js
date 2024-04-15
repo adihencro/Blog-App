@@ -2,17 +2,24 @@ import React, { useState, useEffect } from 'react';
 import Post from './Post'; 
 import { BLOG_API_URL } from '../../../api';
 
+
 const PostList = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    // Fetch posts from your API here
-    fetch(`${BLOG_API_URL}/posts`)
-      .then(response => response.json())
-      .then(data => {
-        console.log('Fetched posts:', data); 
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch(`${BLOG_API_URL}/posts`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch posts');
+        }
+        const data = await response.json();
         setPosts(data);
-      })
+      } catch (error) {
+        console.error('Fetch posts error:', error);
+      }
+    };
+    fetchPosts();
   }, []);
   
 
@@ -30,3 +37,4 @@ const PostList = () => {
 };
 
 export default PostList;
+
