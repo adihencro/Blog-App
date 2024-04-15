@@ -51,7 +51,6 @@ const LoginForm = () => {
             setSuccess('');
             }, 1800);
             console.log(data);
-            console.log(token);
             login(data.token);
       }
     } catch (error) {

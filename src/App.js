@@ -7,7 +7,6 @@ import { AuthProvider } from './components/Auth/AuthContext';
 import { PrivateRoute } from './components/Auth/PrivateRoute';
 
 
-
 function App() {
   return (
     <div className="App">
@@ -18,7 +17,7 @@ function App() {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/home" element={<PrivateRoute />}>
-              <Route path="/home" element={<PostList />}/>  
+              <Route path="/home" element={<PostList />} />
             </Route>
           </Routes>
         </Router>

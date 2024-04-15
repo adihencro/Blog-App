@@ -14,6 +14,7 @@ const PostList = () => {
           throw new Error('Failed to fetch posts');
         }
         const data = await response.json();
+        console.log(data);
         setPosts(data);
       } catch (error) {
         console.error('Fetch posts error:', error);
@@ -30,7 +31,7 @@ const PostList = () => {
           <Post key={post.id} post={post} />
         ))
       ) : (
-        <p>Loading posts...</p>
+        <p>There is no posts yet...</p>
       )}
     </div>
   );
