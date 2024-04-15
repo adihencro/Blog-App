@@ -70,3 +70,19 @@
     text-align: left;
     font-weight: bold;
   }
+
+  .comment-label {
+    color: white;
+  }
+  
+  .comment-input {
+    background-color: #606060; 
+    color: white; 
+    border: none; 
+    padding: 5px;
+    border-radius: 5px; 
+  }
+  
+  .comment-input:focus {
+    outline: none; 
+  }

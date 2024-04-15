@@ -13,7 +13,7 @@ const LoginForm = () => {
     password: '',
   });
 
-  const { token, isLoggedIn, login } = useContext(AuthContext); 
+  const { isLoggedIn, login } = useContext(AuthContext); 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -51,7 +51,7 @@ const LoginForm = () => {
             setSuccess('');
             }, 1800);
             console.log(data);
-            login(data.token);
+            login(data.token, data.id);
       }
     } catch (error) {
       setError(error.message);
