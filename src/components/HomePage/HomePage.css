@@ -1,0 +1,14 @@
+  .container {
+    display: flex;
+  }
+  
+  .border {
+    border-left: 2px solid #ddd; /* Vertical border on the left */
+    height: 100vh; /* Full height of the viewport */
+  }
+  
+  .content {
+    flex-grow: 1; /* Allow content to grow to fill remaining space */
+    /* You can add more styles to the content as needed */
+  }
+  
