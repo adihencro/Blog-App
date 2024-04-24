@@ -18,24 +18,23 @@ function App() {
         <PostProvider>
           <Router>
             <Routes>
-              <Route path="/" element={<LoginForm />} />
               <Route path="/login" element={<LoginForm />} />
               <Route path="/register" element={<RegisterForm />} />
-                <Route path="/home" element={<PrivateRoute />}>
-                  <Route path="/home" element={<HomePage />} />
-                </Route>
-                <Route path="/search" element={<PrivateRoute />}>
-                  <Route path="/search" element={<Search />} />
-                </Route>
-                <Route path="/create" element={<PrivateRoute />}>
-                  <Route path="/create" element={<Create />} />
-                </Route>
-                <Route path="/profile" element={<PrivateRoute />}>
-                  <Route path="/profile" element={<Profile />} />
-                </Route>
+              <Route path="/home" element={<PrivateRoute />}>
+                <Route path="/home" element={<HomePage />} />
+              </Route>
+              <Route path="/search" element={<PrivateRoute />}>
+                <Route path="/search" element={<Search />} />
+              </Route>
+              <Route path="/create" element={<PrivateRoute />}>
+                <Route path="/create" element={<Create />} />
+              </Route>
+              <Route path="/profile/:userId" element={<PrivateRoute />}>
+                <Route path="/profile/:userId" element={<Profile />} />
+              </Route>
             </Routes>
           </Router>
-          </PostProvider>
+        </PostProvider>
       </AuthProvider>
     </div>
   );

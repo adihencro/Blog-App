@@ -10,7 +10,7 @@ import { TiHome } from "react-icons/ti";
 
 
 const NavBar = () => {
-    const { logout } = useContext(AuthContext);
+    const { userId, logout } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const homeHandle = () => {
@@ -26,7 +26,7 @@ const NavBar = () => {
     }
 
     const profileHandle = () => {
-        navigate('/profile');
+        navigate(`/profile/${userId}`);
     }
 
     const logoutHandle = () => {

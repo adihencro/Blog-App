@@ -6,7 +6,7 @@ import { BiCommentDetail } from "react-icons/bi";
 import Comment from '../Comments/Comment';
 import Like from '../Likes/Like';
 import LikeAction from '../Likes/LikeAction';
-import { AuthContext } from "../../../Auth/AuthContext";
+import { useNavigate } from 'react-router-dom';
 
 const Post = ({ post }) => {
   const [details, setDetails] = useState([]);
@@ -14,8 +14,7 @@ const Post = ({ post }) => {
   const [action, setAction] = useState("");
   const [clickedNum, setClickedNum] = useState(false);
   const [clickedComment, setClickedComment] = useState(false);
-  const [likeId, setLikeId] = useState(null);
-  const { token, userId } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -55,10 +54,14 @@ const Post = ({ post }) => {
     setClickedComment(true);
   };
 
+  const handleClickProfile = () => {
+    navigate(`/profile/${details?.post?.creator}`);
+  };
+
 
   return (
     <div className="wrapper">
-      <p className='creator'>@{details?.post?.creator_username}</p>
+      <p className='creator' onClick={handleClickProfile}>@{details?.post?.creator_username}</p>
       {clickedNum &&  details?.likes && details.likes.length > 0 && <Like allLikes={details.likes} setClickedNum={setClickedNum} />}
       {clickedComment && <Comment allComments={details?.comments} setClickedComment={setClickedComment} postID={post.id} />}
       {details?.post?.image && details.post.image.length > 0 ? (

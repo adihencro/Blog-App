@@ -26,7 +26,7 @@ const PostList = () => {
   return (
     <div className="post-list-home">
       {posts.results && posts.results.length > 0 ? (
-        posts.results.map((post) => <Post key={post.id} post={post} />)
+        posts.results.reverse().map((post) => <Post key={post.id} post={post} />)
       ) : (
         <p className="p">There is no posts yet...</p>
       )}
