@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Post from "./Post";
+import './PostList.css';
 import { BLOG_API_URL } from "../../../../api";
 
 const PostList = () => {
@@ -23,11 +24,11 @@ const PostList = () => {
   }, []);
 
   return (
-    <div className="post-list">
+    <div className="post-list-home">
       {posts.results && posts.results.length > 0 ? (
         posts.results.map((post) => <Post key={post.id} post={post} />)
       ) : (
-        <p>There is no posts yet...</p>
+        <p className="p">There is no posts yet...</p>
       )}
     </div>
   );

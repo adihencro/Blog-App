@@ -17,8 +17,6 @@ const Post = ({ post }) => {
   const [likeId, setLikeId] = useState(null);
   const { token, userId } = useContext(AuthContext);
 
-  console.log(token, userId);
-
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -27,7 +25,6 @@ const Post = ({ post }) => {
           throw new Error('Failed to fetch post');
         }
         const data = await response.json();
-        console.log('Fetched post details:', data);
         setDetails(data);
       } catch (error) {
         console.error('Fetch posts error:', error);
@@ -35,6 +32,9 @@ const Post = ({ post }) => {
 
     };
     fetchPosts();
+
+    const fetchDataInterval = setInterval(fetchPosts, 5000); // Fetch data every 5 seconds
+    return () => clearInterval(fetchDataInterval);
   }, []);
 
 

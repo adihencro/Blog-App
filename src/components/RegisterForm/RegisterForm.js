@@ -5,6 +5,7 @@ import { MdEmail } from "react-icons/md";
 import { BsPencilFill } from "react-icons/bs";
 import { FaPencilAlt } from "react-icons/fa";
 import { BiOutline } from "react-icons/bi";
+import { ImFilePicture } from "react-icons/im";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { BLOG_API_URL } from "../../api";
@@ -13,10 +14,11 @@ const RegisterForm = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
     bio: "",
+    image: null
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -24,21 +26,29 @@ const RegisterForm = () => {
   const [success, setSuccess] = useState(null);
 
   const handleChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
+    const { name, value, files } = event.target;  
+
+    if (name === "image") {  
+      setFormData({ ...formData, [name]: files[0] }); 
+    } else {
+      setFormData({ ...formData, [name]: value });  
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsLoading(true);
-    setError(null);
 
-    console.log({ formData });
+    const formDataToSend = new FormData();
+    for (let key in formData) {
+      formDataToSend.append(key, formData[key]);
+    }
+
+    console.log(formDataToSend);
 
     try {
       const response = await fetch(`${BLOG_API_URL}/users/register`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: formDataToSend, //application/json doesn't support file uploads.
       });
 
       if (!response.ok) {
@@ -139,6 +149,17 @@ const RegisterForm = () => {
             required
           />
           <BiOutline className="icon" />
+        </div>
+        <div className="input-box">
+          <input
+            type="file"
+            placeholder="Select Image"
+            id="image"
+            name="image"
+            onChange={handleChange}
+            required
+          />
+          <ImFilePicture className="icon" />
         </div>
         <button type="submit" disabled={isLoading}>
           Register

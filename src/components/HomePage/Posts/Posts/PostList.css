@@ -1,5 +1,11 @@
-.post-list {
+.post-list-home {
     width: 420px;
     padding: 10px; 
     margin: 10px; 
+}
+
+.p {
+    text-align: right;
+    font-size: 20px;
+    margin-bottom: 200px;
 }
