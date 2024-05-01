@@ -4,20 +4,22 @@ import LoginForm from "./components/LoginForm/LoginForm";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import HomePage from "./components/HomePage/HomePage";
 import { AuthProvider } from "./components/Auth/AuthContext";
+import { LikeProvider } from "./components/HomePage/Posts/Likes/LikeContext"; 
 import { PrivateRoute } from "./components/Auth/PrivateRoute";
-import { PostProvider } from "./components/HomePage/Posts/Posts/PostContext";
 import Profile from "./components/HomePage/Nav/Profile/Profile";
 import Create from "./components/HomePage/Nav/Create/Create";
 import Search from "./components/HomePage/Nav/Search/Search";
-
+import LikedPost from "./components/HomePage/Nav/Profile/LikedPost";
+import EditProfile from "./components/HomePage/Nav/Profile/EditProfile";
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
-        <PostProvider>
+        <LikeProvider>
           <Router>
             <Routes>
+              <Route path="/" element={<LoginForm />} />
               <Route path="/login" element={<LoginForm />} />
               <Route path="/register" element={<RegisterForm />} />
               <Route path="/home" element={<PrivateRoute />}>
@@ -32,9 +34,15 @@ function App() {
               <Route path="/profile/:userId" element={<PrivateRoute />}>
                 <Route path="/profile/:userId" element={<Profile />} />
               </Route>
+              <Route path="/profile/likedPost" element={<PrivateRoute />}>
+                <Route path="/profile/likedPost" element={<LikedPost />} />
+              </Route>
+              <Route path="/profile/Edit" element={<PrivateRoute />}>
+                <Route path="/profile/Edit" element={<EditProfile />} />
+              </Route>
             </Routes>
           </Router>
-        </PostProvider>
+        </LikeProvider>
       </AuthProvider>
     </div>
   );

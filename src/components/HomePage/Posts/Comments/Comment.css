@@ -1,17 +1,20 @@
-.modalBackground {
+ .modalBackground-c {
     width: 460px; 
     max-height: 510px;
-    background-color: white;
     border-radius: 5px;
-    position: fixed;
+    position: fixed; /* Position relative to the viewport */
+    top: 35.5%; /* Position at the vertical center of the viewport */
+    left: 53.2%; /* Position at the horizontal center of the viewport */
+    transform: translate(-50%, -50%); /* Center the element */
+    z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-  .modalContainer {
+  .modalContainer-c {
     width: 450px;
-    max-height: 500px;
+    max-height: 508px;
     border-radius: 12px;
     background-color: #444444  ;
     display: flex;
@@ -20,7 +23,7 @@
     overflow-y: auto; /* Enable vertical scrolling */
   }
 
-  .close-button {
+  .close-button-c {
     width: 40px; 
     height: 40px; 
     border: 2px solid #ccc;
@@ -31,18 +34,18 @@
     cursor: pointer; 
   }
   
-  .close-icon {
+  .close-icon-c {
     font-size: 15px; 
     color: #333; 
     color: white;
   }
 
-  .p {
+  .p-comment-c {
     font-size: 14px;
     margin-bottom: 10px;
   }
   
-  .title {
+  .title-c {
     text-align: center;
     font-weight: bold;
     font-size: 20px;
@@ -50,12 +53,12 @@
     color: white;
   }
   
-  .ul {
+  .ul-c {
     list-style-type: none;
     padding: 0;
   }
   
-  .li {
+  .li-c {
     font-size: 13px;
     margin-bottom: 5px;
     text-align: left;
@@ -65,17 +68,17 @@
     padding: 10px;
   }
   
-  .p-name {
+  .p-name-c {
     font-size: 13px;
     text-align: left;
     font-weight: bold;
   }
 
-  .comment-label {
+  .comment-label-c {
     color: white;
   }
   
-  .comment-input {
+  .comment-input-c {
     background-color: #606060; 
     color: white; 
     border: none; 

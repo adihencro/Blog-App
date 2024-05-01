@@ -5,11 +5,17 @@ import { BLOG_API_URL } from "../../../../api";
 import Post from "../../Posts/Posts/Post";
 import NavBar from "../NavBar";
 import { useParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
-  const { userId } = useParams();
+  const { userId: urlUserId } = useParams();
+  const { userId: contextUserId } = useContext(AuthContext);
+  const userId = urlUserId || contextUserId;
+  const urlUserIdInt = parseInt(urlUserId, 10);
+  const className = urlUserIdInt === contextUserId ? "image-profile-with" : "image-profile";
   const [posts, setPosts] = useState([]);
   const [userData, setUserData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -48,6 +54,14 @@ const Profile = () => {
     return () => clearInterval(fetchDataInterval);
   }, [userId]);
 
+  const LikedPostHandler = () => {
+    navigate(`/profile/LikedPost`);
+  };
+
+  const EditProfileHandler = () => {
+    navigate(`/profile/Edit`);
+  };
+
   return (
     <div className="container">
       <div className="post-list">
@@ -56,14 +70,14 @@ const Profile = () => {
           <div style={{ display: "flex", alignItems: "center" }}>
             {userData?.image && (
               <img
-                className="image"
+                className={className}
                 src={`${BLOG_API_URL}${userData.image}`}
                 alt="Uploaded"
               />
             )}
-            <h1 className="user-title">{userData?.username}</h1>
-            <button className="button">Edit Profile</button>
-            <button className="button">Liked Posts</button>
+            <h1 className="user-title">@{userData?.username}</h1>
+            {urlUserIdInt === contextUserId && <button className="button-profile" onClick={EditProfileHandler}>Edit Profile</button>}
+            {urlUserIdInt === contextUserId && <button className="button-profile"  onClick={LikedPostHandler}>Liked Posts</button>}
           </div>
           <p className="p-profile">
             {posts.count_posts > 0 ? posts.count_posts : 0} posts

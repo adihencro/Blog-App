@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
-import "./Comment.css";
+import React, {useState, useContext } from "react";
+import './Comment.css'
 import { BLOG_API_URL } from "../../../../api";
 import { AuthContext } from "../../../Auth/AuthContext";
 
@@ -30,9 +30,6 @@ const Comment = ({ allComments, setClickedComment, postID }) => {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
-      console.log(data);
-
       if (!response.ok) {
         throw new Error(`API request failed with status ${response.status}`);
       } else {
@@ -47,29 +44,29 @@ const Comment = ({ allComments, setClickedComment, postID }) => {
   };
 
   return (
-    <div className="modalBackground">
-      <div className="modalContainer">
+    <div className="modalBackground-c">
+      <div className="modalContainer-c">
         <div
-          className="close-button"
+          className="close-button-c"
           onClick={() => {
             setClickedComment(false);
           }}
         >
-          <span className="close-icon">X</span>
+          <span className="close-icon-c">X</span>
         </div>
-        <p className="title">Comments</p>
-        <ul className="ul">
+        <p className="title-c">Comments</p>
+        <ul className="ul-c">
           {allComments && allComments.length > 0 && allComments.map((comment) => (
-            <li className="li" key={comment.id}>
-              <p className="p-name">@{comment.commented_by_username}</p>
-              <p className="p">{comment.content}</p>
+            <li className="li-c" key={comment.id}>
+              <p className="p-name-c">@{comment.commented_by_username}</p>
+              <p className="p-comment-c">{comment.content}</p>
             </li>
           ))}
-          <li className="li" />
-          <label className="comment-label">
+          <li className="li-c" />
+          <label className="comment-label-c">
             Add comment:{" "}
             <input
-              className="comment-input"
+              className="comment-input-c"
               id="content"
               name="content"
               value={formData.content}

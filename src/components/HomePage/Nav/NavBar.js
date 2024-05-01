@@ -35,11 +35,11 @@ const NavBar = () => {
 
     return (
         <div class="sidebar">
-            <p><TiHome onClick={homeHandle} /> Home</p>
-            <p><BiSearchAlt2 onClick={searchHandle} /> Search</p>
-            <p><MdOutlineAddToPhotos onClick={createHandle} /> Create</p>
-            <p><CgProfile onClick={ profileHandle} /> Profile</p>
-            <p style={{ margin: '600px 0' }}><TbLogout onClick={logoutHandle} /> Logout</p>
+            <p onClick={homeHandle} ><TiHome /> Home</p>
+            <p onClick={searchHandle}><BiSearchAlt2 /> Search</p>
+            <p onClick={createHandle}><MdOutlineAddToPhotos /> Create</p>
+            <p onClick={ profileHandle}><CgProfile /> Profile</p>
+            <p onClick={logoutHandle} style={{ margin: '600px 0' }}><TbLogout /> Logout</p>
         </div>
     );
 };
