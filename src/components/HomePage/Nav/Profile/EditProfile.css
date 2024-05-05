@@ -1,0 +1,12 @@
+.wrapper-profile {
+    width: 420px;
+    margin: 10px;  
+}
+
+.wrapper-profile h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+

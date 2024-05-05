@@ -11,7 +11,7 @@ const PostList = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(`${BLOG_API_URL}/posts`);
+        const response = await fetch(`${BLOG_API_URL}/posts/`);
         if (!response.ok) {
           throw new Error("Failed to fetch posts");
         }
@@ -29,8 +29,8 @@ const PostList = () => {
 
   return (
     <div className="post-list-home">
-      {posts.results && posts.results.length > 0 ? (
-        posts.results.reverse().map((post) => userId !== post.creator && <Post key={post.id} post={post} />)
+      {posts && posts.length > 0 ? (
+        posts.reverse().map((post) => userId !== post.creator && <Post key={post.id} post={post} />)
       ) : (
         <p className="p">There is no posts yet...</p>
       )}

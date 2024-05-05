@@ -21,7 +21,7 @@ const Profile = () => {
     const fetchUserData = async () => {
       try {
         const response = await fetch(
-          `${BLOG_API_URL}//users/id/${userId}/?page=1'`,
+          `${BLOG_API_URL}/users/id/${userId}/`,
         );
         if (!response.ok) {
           throw new Error("Failed to fetch posts");
@@ -37,7 +37,7 @@ const Profile = () => {
     const fetchUerPosts = async () => {
       try {
         const response = await fetch(
-          `${BLOG_API_URL}/users/get_all_posts/${userId}?page=1'`,
+          `${BLOG_API_URL}/users/get_all_posts/${userId}`,
         );
         if (!response.ok) {
           throw new Error("Failed to fetch posts");

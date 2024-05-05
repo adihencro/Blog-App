@@ -2,9 +2,11 @@ import React, { useEffect, useState, useContext } from "react";
 import "./Modify.css";
 import { AuthContext } from "../../../Auth/AuthContext";
 import { BLOG_API_URL, fetchPostDetails } from "../../../../api";
+import { useNavigate } from 'react-router-dom';
 
 const Modify = ({ setClickedModify, postID }) => {
   const { token } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const deleteHandle = async (event) => {
     event.preventDefault();
@@ -52,6 +54,8 @@ const Modify = ({ setClickedModify, postID }) => {
 
   const updatehandle = async (event) => {
     event.preventDefault();
+    console.log(postID);
+    navigate(`/post/edit/${postID}`); 
   };
 
   return (
