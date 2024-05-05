@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import "./Modify.css";
 import { AuthContext } from "../../../Auth/AuthContext";
 import { BLOG_API_URL, fetchPostDetails } from "../../../../api";

@@ -1,5 +1,5 @@
 import React from "react";
-import { FaUser, FaLock } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { BsPencilFill } from "react-icons/bs";
 import { FaPencilAlt } from "react-icons/fa";
