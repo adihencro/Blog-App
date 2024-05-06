@@ -77,8 +77,8 @@ const PostList = () => {
         <p className="p">There is no posts yet...</p>
       )}
       <div style={{ display: "flex", alignItems: "center" }}>
-        {next && <button onClick={handleClickNext}>Next</button>}
-        {previous && <button onClick={handleClickPrevious}>Previous</button>}
+        {next && <button className="button-pagination-next" onClick={handleClickNext}>Next</button>}
+        {previous && <button className="button-pagination-previous" onClick={handleClickPrevious}>Previous</button>}
       </div>
     </div>
   );
